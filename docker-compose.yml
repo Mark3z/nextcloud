@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Aa1234
+    env_file:
+      - db.env
+
+  app:
+    image: nextcloud:production-fpm-alpine
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - MYSQL_HOST=db
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.example.com
+      - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
+      - NEXTCLOUD_ADMIN_USER_FILE=/run/secrets/nextcloud_admin_user
+    env_file:
+      - db.env
+    depends_on:
+      - db
+    secrets:
+      - nextcloud_admin_password
+      - nextcloud_admin_user
+
+  web:
+    build: ./web
+    restart: always
+    ports:
+      - 8080:443
+    volumes:
+      - ./certs/domain.crt:/etc/nginx/domain.crt
+      - ./certs/domain.key:/etc/nginx/domain.key
+      - nextcloud:/var/www/html:ro
+    depends_on:
+      - app
+
+volumes:
+  db:
+  nextcloud:
+
+secrets:
+  nextcloud_admin_password:
+    file: ./nextcloud_admin_password.txt        
+  nextcloud_admin_user:
+    file: ./nextcloud_admin_user.txt
