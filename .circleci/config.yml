@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: Run docker-compose up command
-          command: docker-compose up
+          command: docker-compose up -d
 
 workflows:
   version: 2
