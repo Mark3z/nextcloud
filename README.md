@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/tide34/lab4-task1.svg?style=svg)](https://app.circleci.com/pipelines/github/tide34/lab4-task1)
+[![CircleCI](https://circleci.com/gh/tide34/nextcloud.svg?style=svg)](https://app.circleci.com/pipelines/github/tide34/nextcloud)
 
 ### Manual how to run nextcloud application quickly:  
   
