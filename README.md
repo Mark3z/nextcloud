@@ -13,7 +13,9 @@ Run next commands:
 2) Up all containers:  
    `docker-compose up -d`  
   
-3) Wait some time before docker-compose command outputs that all containers will be running.  
+3) Wait for **at least 1 minute** before docker-compose command outputs that all containers will be running.  
   
 4) Open in brouser following link:  
-   `https://cloud.example.com:8080` 
+   `https://cloud.example.com:8080`  
+  
+5)
