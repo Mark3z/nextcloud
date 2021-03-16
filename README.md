@@ -19,7 +19,7 @@ Run next commands:
    https://cloud.example.com:8080  
   
 5) Login into account as administrator with next credential:  
-   **Username:** gleb
+   **Username:** gleb  
    **Password:** Aa1234   
-To **change** default administrator **username** edit nextcloud_admin_user.txt file, 
+To **change** default administrator **username** edit nextcloud_admin_user.txt file,  
                                     **password** edit nextcloud_admin_password.txt file.
