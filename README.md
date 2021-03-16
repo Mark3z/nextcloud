@@ -7,10 +7,10 @@ Run next commands:
 0) Edit /etc/hosts file. Insert following line in the end of file:  
    `127.0.0.1	cloud.example.com`
     
-1) Clone this repository:
+1) Clone this repository:  
    `git clone https://github.com/tide34/nextcloud.git`  
   
-2) Up all containers:
+2) Up all containers:  
    `docker-compose up -d`  
   
 3) Wait some time before docker-compose command outputs that all containers will be running.  
