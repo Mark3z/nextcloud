@@ -29,4 +29,3 @@ workflows:
       - check_docker_compose_up_command:
           filters:
             branches:
-             only: main

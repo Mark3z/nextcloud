@@ -36,8 +36,8 @@ services:
     ports:
       - 8080:443
     volumes:
-      - ./certs/domain.crt:/etc/nginx/domain.crt
-      - ./certs/domain.key:/etc/nginx/domain.key
+      - ./web/certs/domain.crt:/etc/nginx/domain.crt
+      - ./web/certs/domain.key:/etc/nginx/domain.key
       - nextcloud:/var/www/html:ro
     depends_on:
       - app
