@@ -16,6 +16,7 @@ services:
     image: nextcloud:production-fpm-alpine
     restart: always
     volumes:
+      - ./custom_upload_size.ini:/usr/local/etc/php/conf.d/custom_upload_size.ini
       - nextcloud:/var/www/html
     environment:
       - MYSQL_HOST=db
