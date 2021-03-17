@@ -10,7 +10,7 @@ jobs:
         - checkout
         - run: ls
         - docker/dockerlint:
-            dockerfile: ./web/Dockerfile
+            dockerfile: web/Dockerfile
             treat-warnings-as-errors: true
 
   check_docker_image_building:
