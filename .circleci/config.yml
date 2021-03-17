@@ -31,7 +31,7 @@ jobs:
           command: docker-compose up -d
 
 workflows:
-  check container environment:
+  check_container_environment:
     jobs:
       - lint:
           filters:
