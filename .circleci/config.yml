@@ -33,7 +33,6 @@ jobs:
           command: docker-compose up -d
 
 workflows:
-  version: 2
   check container environment:
     jobs:
       - lint:
