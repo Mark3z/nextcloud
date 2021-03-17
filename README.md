@@ -11,7 +11,7 @@ Run next commands:
    git clone https://github.com/tide34/nextcloud.git  
   
 2) Up all containers:  
-   docker-compose up -d  
+   docker-compose up --build -d  
   
 3) Wait for **at least 1 minute** after docker-compose command output that all containers had ran.  
   
@@ -21,4 +21,10 @@ Run next commands:
 5) Login into account as administrator with next credential:  
    **Username:** gleb  
    **Password:** Aa1234   
-   To **change** default administrator **username** edit nextcloud_admin_user.txt file, **password** edit nextcloud_admin_password.txt file.
+   To **change** default administrator **username** edit nextcloud_admin_user.txt file, **password** edit nextcloud_admin_password.txt file.  
+  
+6) Stop all containers:  
+   docker-compose stop  
+  
+7) Remove all containers:
+   docker-compose rm  
