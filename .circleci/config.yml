@@ -32,6 +32,7 @@ jobs:
           command: |
              docker-compose up -d
              sleep 60
+             cat "127.0.0.1 cloud.example.com" >> /etc/nginx/nginx.conf
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
 
 workflows:
