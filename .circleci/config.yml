@@ -28,7 +28,7 @@ workflows:
              only:
       - check_docker_compose_up_command:
           requires:
-            name: check_docker_image_building
+            - name: check_docker_image_building
           filters:
             branches:
               only:
