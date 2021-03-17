@@ -32,9 +32,11 @@ jobs:
           command: |
              docker-compose up -d
              sleep 60
+             docker-compose logs > /tmp/log.txt
              cat "127.0.0.1 cloud.example.com" >> /etc/hosts
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
-
+      - store_artifacts:
+           path: /tmp/log.txt
 workflows:
   check_container_environment:
     jobs:
