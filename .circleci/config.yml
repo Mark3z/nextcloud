@@ -11,7 +11,7 @@ jobs:
         - run: ls web
         - docker/dockerlint:
             dockerfile: web/Dockerfile
-            treat-warnings-as-errors: true
+            #treat-warnings-as-errors: true
 
   check_docker_image_building:
     machine:
