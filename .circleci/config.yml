@@ -8,7 +8,7 @@ jobs:
       executor: docker/machine
       steps:
         - checkout
-        - run: ls
+        - run: ls web
         - docker/dockerlint:
             dockerfile: web/Dockerfile
             treat-warnings-as-errors: true
