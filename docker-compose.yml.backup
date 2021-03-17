@@ -6,10 +6,11 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - ./wait-for-it.sh:/wait-for-it.sh
+      - ./wait-for-it.sh:/home
       - db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=Aa1234
+    command: ["/home/wait-for-it.sh", "db:3306", "--", "mysqld"]
     env_file:
       - db.env
 

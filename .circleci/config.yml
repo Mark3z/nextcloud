@@ -29,7 +29,10 @@ jobs:
       - checkout
       - run:
           name: Run docker-compose up command
-          command: docker-compose up -d
+          command: |
+             docker-compose up -d
+             sleep 60
+             curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
 
 workflows:
   check_container_environment:
