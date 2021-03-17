@@ -4,9 +4,7 @@ orbs:
   docker: circleci/docker@1.5.0
   jobs:
     lint:
-      executor:
-        machine:
-          image: ubuntu-2004:202101-01
+      executor: docker/machine
       steps:
         - checkout
         - docker/dockerlint:
