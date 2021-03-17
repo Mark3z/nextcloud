@@ -1,4 +1,18 @@
 version: 2.1
+
+orbs:
+  docker: circleci/docker@x.y.z
+  jobs:
+    lint:
+      executor:
+        machine:
+          image: ubuntu-2004:202101-01
+      steps:
+        - checkout
+        - docker/dockerlint:
+            dockerfile: ./web/Dockerfile
+            treat-warnings-as-errors: true
+
 jobs:
   check_docker_image_building:
     machine:
@@ -22,13 +36,13 @@ workflows:
   version: 2
   check container environment:
     jobs:
-      - check_docker_image_building:
+      - lint:
           filters:
             branches:
               only: /.*/
+      - check_docker_image_building:
+          requires:
+            - lint
       - check_docker_compose_up_command:
           requires:
              - check_docker_image_building
-          filters:
-            branches:
-               only: /.*/
