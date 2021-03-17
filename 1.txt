@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ $? -eq 1 ]; then
+  echo "status 255"
+else
+  echo "status 0"
+fi
