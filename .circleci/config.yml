@@ -2,16 +2,15 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@1.5.0
-  jobs:
-    lint:
+
+jobs:
+  lint:
       executor: docker/machine
       steps:
         - checkout
         - docker/dockerlint:
             dockerfile: ./web/Dockerfile
             treat-warnings-as-errors: true
-
-jobs:
   check_docker_image_building:
     machine:
       image: ubuntu-2004:202101-01
