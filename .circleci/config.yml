@@ -31,6 +31,7 @@ jobs:
           name: Run docker-compose up command
           command: |
              docker-compose up -d
+             cat /etc/hosts
              sleep 60
              docker-compose logs > /tmp/log.txt
              sudo cat "127.0.0.1 cloud.example.com" >> /etc/hosts
