@@ -31,7 +31,7 @@ jobs:
           command: |
              docker-compose up -d
              cat /etc/hosts
-             sleep 1
+             sleep 60
              docker-compose logs > /tmp/log.txt
              echo "I'm user $(whoami)"
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
