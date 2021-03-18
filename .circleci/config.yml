@@ -36,7 +36,7 @@ jobs:
              echo "I'm user $(whoami)"
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
              cat /etc/hosts
-             curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
+             curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080/login | grep '200 OK' 
       - store_artifacts:
            path: /tmp/log.txt
 workflows:
