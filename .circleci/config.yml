@@ -37,6 +37,7 @@ jobs:
              cat /etc/hosts
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
              echo "/etc/hosts file after adding new URL:"
+             cat /etc/hosts
       - run:
           name: Save artifact and check login page availability
           command: |
