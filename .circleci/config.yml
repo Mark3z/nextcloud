@@ -41,6 +41,7 @@ jobs:
           name: Save artifact and check login page availability
           command: |
              docker-compose logs > /tmp/log.txt
+             echo "Waiting for 60 seconds."
              sleep 60
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080/login | grep '200 OK' 
              docker-compose logs > /tmp/log.txt
