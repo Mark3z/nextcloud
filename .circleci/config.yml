@@ -32,9 +32,10 @@ jobs:
           command: |
              docker-compose up -d
              cat /etc/hosts
-             sleep 60
+             sleep 1
              docker-compose logs > /tmp/log.txt
-             sudo echo "127.0.0.1 cloud.example.com" >> /etc/hosts
+             echo "I'm user $(whoami)"
+             echo "127.0.0.1 cloud.example.com" >> /etc/hosts
              cat /etc/hosts
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
       - store_artifacts:
