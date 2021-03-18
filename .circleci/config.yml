@@ -32,10 +32,8 @@ jobs:
              docker-compose up -d
              cat /etc/hosts
              sleep 60
-             docker-compose logs > /tmp/log.txt
-             echo "I'm user $(whoami)"
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
-             cat /etc/hosts
+             docker-compose logs > /tmp/log.txt
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080/login | grep '200 OK' 
       - store_artifacts:
            path: /tmp/log.txt
