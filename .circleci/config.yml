@@ -34,7 +34,7 @@ jobs:
              sleep 1
              docker-compose logs > /tmp/log.txt
              echo "I'm user $(whoami)"
-             echo "127.0.0.1 cloud.example.com" >> /etc/hosts
+             sudo -u root echo "127.0.0.1 cloud.example.com" >> /etc/hosts
              cat /etc/hosts
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080 | grep '200 OK' 
       - store_artifacts:
