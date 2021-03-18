@@ -1,25 +1,25 @@
 version: 2.1
 
-#orbs:
-#  docker: circleci/docker@1.5.0
+orbs:
+  docker: circleci/docker@1.5.0
 
 jobs:
-#  lint:
-#      executor: docker/machine
-#      steps:
-#        - checkout
-#        - run: ls web
-#        - docker/dockerlint:
-#            dockerfile: web/Dockerfile
+  lint:
+      executor: docker/machine
+      steps:
+        - checkout
+        - run: ls web
+        - docker/dockerlint:
+            dockerfile: web/Dockerfile
 
-#  check_docker_image_building:
-#    machine:
-#      image: ubuntu-2004:202101-01
-#    steps:
-#      - checkout
-#      - run:
-#          name: Build nginx image
-#          command: docker build -t nginx:check ./web
+  check_docker_image_building:
+    machine:
+      image: ubuntu-2004:202101-01
+    steps:
+      - checkout
+      - run:
+          name: Build nginx image
+          command: docker build -t nginx:check ./web
      
   check_docker_compose_up_command:
      machine:
@@ -35,21 +35,20 @@ jobs:
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
              docker-compose logs > /tmp/log.txt
              curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080/login | grep '200 OK' 
+             docker-compose logs > /tmp/log.txt
       - store_artifacts:
            path: /tmp/log.txt
 workflows:
   check_container_environment:
     jobs:
-#      - lint:
-#          filters:
-#            branches:
-#              only: /.*/
-#      - check_docker_image_building:
-#          requires:
-#            - lint
+      - lint:
+          filters:
+            branches:
+              only: /.*/
+      - check_docker_image_building:
+          requires:
+            - lint
       - check_docker_compose_up_command:
-#          requires:
-#             - check_docker_image_building
-           filters:
-             branches:
-               only: /.*/
+          requires:
+             - check_docker_image_building
+           
