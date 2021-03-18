@@ -48,6 +48,6 @@ volumes:
 
 secrets:
   nextcloud_admin_password:
-    file: ./nextcloud_admin_password.txt        
+    file: /.dev/nextcloud_admin_password.txt        
   nextcloud_admin_user:
-    file: ./nextcloud_admin_user.txt
+    file: /.dev/nextcloud_admin_user.txt
