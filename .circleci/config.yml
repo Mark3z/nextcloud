@@ -33,8 +33,10 @@ jobs:
       - run:
           name: Add new URL in /etc/hosts file
           command: |
+             echo "/etc/hosts file before adding new URL:"     
              cat /etc/hosts
              echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
+             echo "/etc/hosts file after adding new URL:"
       - run:
           name: Save artifact and check login page availability
           command: |
