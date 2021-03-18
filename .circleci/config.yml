@@ -1,26 +1,25 @@
 version: 2.1
 
-orbs:
-  docker: circleci/docker@1.5.0
+#orbs:
+#  docker: circleci/docker@1.5.0
 
 jobs:
-  lint:
-      executor: docker/machine
-      steps:
-        - checkout
-        - run: ls web
-        - docker/dockerlint:
-            dockerfile: web/Dockerfile
-            #treat-warnings-as-errors: true
+#  lint:
+#      executor: docker/machine
+#      steps:
+#        - checkout
+#        - run: ls web
+#        - docker/dockerlint:
+#            dockerfile: web/Dockerfile
 
-  check_docker_image_building:
-    machine:
-      image: ubuntu-2004:202101-01
-    steps:
-      - checkout
-      - run:
-          name: Build nginx image
-          command: docker build -t nginx:check ./web
+#  check_docker_image_building:
+#    machine:
+#      image: ubuntu-2004:202101-01
+#    steps:
+#      - checkout
+#      - run:
+#          name: Build nginx image
+#          command: docker build -t nginx:check ./web
      
   check_docker_compose_up_command:
      machine:
@@ -43,13 +42,16 @@ jobs:
 workflows:
   check_container_environment:
     jobs:
-      - lint:
-          filters:
-            branches:
-              only: /.*/
-      - check_docker_image_building:
-          requires:
-            - lint
+#      - lint:
+#          filters:
+#            branches:
+#              only: /.*/
+#      - check_docker_image_building:
+#          requires:
+#            - lint
       - check_docker_compose_up_command:
-          requires:
-             - check_docker_image_building
+#          requires:
+#             - check_docker_image_building
+           filters:
+             branches:
+               only: /.*/
