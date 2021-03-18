@@ -11,7 +11,6 @@ jobs:
         - run: ls web
         - docker/dockerlint:
             dockerfile: web/Dockerfile
-            #treat-warnings-as-errors: true
 
   check_docker_image_building:
     machine:
@@ -31,9 +30,18 @@ jobs:
           name: Run docker-compose up command
           command: |
              docker-compose up -d
-             sleep 60
+      - run:
+          name: Add new URL in /etc/hosts file
+          command: |
+             cat /etc/hosts
+             echo "127.0.0.1 cloud.example.com" | sudo tee -a /etc/hosts
+      - run:
+          name: Save artifact and check login page availability
+          command: |
              docker-compose logs > /tmp/log.txt
-             curl --cacert ./web/certs/domain.crt -I  https://127.0.0.1:8080/login | grep '200 OK' 
+             sleep 60
+             curl --cacert ./web/certs/domain.crt -I  https://cloud.example.com:8080/login | grep '200 OK' 
+             docker-compose logs > /tmp/log.txt
       - store_artifacts:
            path: /tmp/log.txt
 workflows:
@@ -49,3 +57,4 @@ workflows:
       - check_docker_compose_up_command:
           requires:
              - check_docker_image_building
+           
